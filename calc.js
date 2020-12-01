@@ -1,10 +1,6 @@
 // global for now. TODO - implement closure or class component
 var listOfNumber = []
 
-function handleOnCHange() {
-    const entryNumber = document.getElementById("number").value;
-}
-
 function calculate(action) {
     if (action === "sum") {
         document.getElementById("console").innerHTML = listOfNumber.reduce((total, number) => total + number, 0)
@@ -12,13 +8,16 @@ function calculate(action) {
     if (action === "average") {
         document.getElementById("console").innerHTML = (listOfNumber.reduce((total, number) => total + number, 0)) / (listOfNumber.length !== 0 ? listOfNumber.length : 1)
     }
+    if (action === "min") {
+        document.getElementById("console").innerHTML = Math.min(...listOfNumber)
+    }
 }
 
 function addToList() {
     const entryNumber = document.getElementById("number").value;
     listOfNumber.push(parseInt(entryNumber))
-    document.getElementById("numberList").innerHTML = document.getElementById("numberList").innerHTML + `<li>${entryNumber}</li>`
-    document.getElementById("number").innerHTML = ""
+    document.getElementById("numberList").innerHTML = document.getElementById("numberList").innerHTML + `<div>${entryNumber}</div>`
+    document.getElementById("number").value = "" 
 }
 
 function clearDisplay() {
@@ -33,5 +32,6 @@ function resetCalculator() {
 }
 
 function refresh(){
-    document.getElementById("numberList").innerHTML =  listOfNumber.reduce( (value, finalValue) => finalValue + `<li>${value}</li>` , '' )`<li>${entryNumber}</li>`
+    console.log()
+    document.getElementById("numberList").innerHTML =  listOfNumber.reduce( (value, finalValue) => finalValue + `<div>${value}</div>` )
 }
