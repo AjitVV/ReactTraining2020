@@ -39,7 +39,7 @@ class BookManager{
     }
 
     getBooksInRatingRange(min,max){
-        return this.books.filter( book => book.rating >= min && book.price <= max )
+        return this.books.filter( book => book.rating >= min && book.rating <= max )
     }
 
     search(text){
