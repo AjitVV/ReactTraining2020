@@ -26,14 +26,22 @@ export default class Game extends React.Component {
         this.setState({ cells, next });
     }
 
+    resetTTT = () => {
+        this.setState({
+            next: "O", cells: ['', '', '',
+                '', '', '',
+                '', '', ''
+            ]
+        })
+    }
+
     render() {
         return (
             <div className='container game' style={{ alignItems: 'center center', width: '500px' }}>
                 <h1>Tic Tac Toe Game</h1>
                 <h2>Next Move: {this.state.next}</h2>
-                <button style={resetStyle} >Reset</button>
+                <button style={resetStyle} onClick={this.resetTTT}>Reset</button>
                 <TicTacToeBoard values={this.state} onCellClick={this.handleStateChange} />
-
             </div>
         );
     }
