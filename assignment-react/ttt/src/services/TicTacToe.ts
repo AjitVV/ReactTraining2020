@@ -1,4 +1,8 @@
-
+export interface MoveTrace {
+    moveValue: string
+    movePosition: number
+    delete: number[]
+}
 export default class TicTacToe{
 
     private _cells:string[];
@@ -6,6 +10,8 @@ export default class TicTacToe{
     private _winner:string|null=null;
     private _winningMoves:null|number[]=null;
     private _moveCount=0;
+    private _moveTrace: any[] = []
+    private _values: number[] = []
     
     constructor(){
 
@@ -36,6 +42,10 @@ export default class TicTacToe{
         return this._winningMoves;
     }
 
+    get moveTrace(){
+        return this._moveTrace
+    }
+
     move(pos:number){
 
         //if the game is over or current cell is occupied
@@ -43,6 +53,12 @@ export default class TicTacToe{
                 return false; 
 
         this._cells[pos]=this._next;
+
+        this._values.push(pos)
+
+        console.log("values", this._values)
+
+        this._moveTrace.push([this._next,  pos, this._values])
 
         this._next= this._next==='O'?'X':'O';
         
